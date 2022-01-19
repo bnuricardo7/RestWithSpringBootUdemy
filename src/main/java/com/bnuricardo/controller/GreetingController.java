@@ -1,11 +1,11 @@
-package com.bnuricardo;
+package com.bnuricardo.controller;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bnuricardo.exception.UnsuportedMathOperationException;
+import com.bnuricardo.exception.ResourceNotFoundException;
 
 @RestController
 public class GreetingController {
@@ -14,7 +14,7 @@ public class GreetingController {
     public Double greeting(@PathVariable(value = "number1") String number1, @PathVariable(value = "number2") String number2) throws Exception {
 
 	if (!isNumeric(number1) || !isNumeric(number2)) {
-	    throw new UnsuportedMathOperationException("Insira um valor numérico.");
+	    throw new ResourceNotFoundException("Insira um valor numérico.");
 	}
 
 	Double sum = convertToDouble(number1) + convertToDouble(number2);
